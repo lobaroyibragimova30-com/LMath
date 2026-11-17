@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LMATH AI</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#210609;color:#fff;font-family:Arial,sans-serif;text-align:center;padding:25px 16px}
+h1{color:#FFD700;font-size:38px;margin:25px 0 5px}
+p{color:#f2d9a0}
+.card{max-width:420px;margin:30px auto;background:#400b12;border:1px solid #b8860b;border-radius:18px;padding:22px}
+input{width:100%;padding:15px;border-radius:10px;border:1px solid #FFD700;background:#24070b;color:white;font-size:19px;margin:12px 0}
+button{background:#FFD700;color:#39070c;border:0;border-radius:10px;padding:13px 20px;font-size:16px;font-weight:bold;margin:5px;cursor:pointer}
+#answer{color:#FFD700;font-size:21px;margin-top:20px;overflow-wrap:anywhere}
+footer{color:#cba65a;margin-top:35px}
+</style>
+</head>
+<body>
+<h1>LMATH ✨</h1>
+<p>AI MATEMATIKA YORDAMCHINGIZ</p>
+<div class="card">
+<h2>Misolingizni kiriting</h2>
+<p>Oddiy matematik misolni yozing:</p>
+<input id="problem" placeholder="Masalan: 25+35">
+<button onclick="solve()">Yechish 🚀</button>
+<div id="answer"></div>
+</div>
+<footer>❤️ LMATH — Bilimingizga AI kuchi!</footer>
+<script>
+function solve(){
+const value=document.getElementById('problem').value.trim();
+const answer=document.getElementById('answer');
+if(!value){answer.textContent="Iltimos, misol kiriting!";return;}
+if(!/^[0-9+\-*/().\s]+$/.test(value)){answer.textContent="Hozircha faqat oddiy matematik amallarni kiriting.";return;}
+try{
+const result=Function('"use strict";return ('+value+')')();
+if(!Number.isFinite(result))throw new Error();
+answer.textContent="Javob: "+result;
+}catch(e){answer.textContent="Misolni tekshirib qayta kiriting.";}
+}
+</script>
+</body>
+</html>
